@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 });
 
 const server = app.listen("4000", () => {
-  console.log("App is lisetning at http://localhost:4000");
+  console.log("App listens at http://localhost:4000");
 });
 
 export default server;
