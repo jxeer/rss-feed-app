@@ -9,8 +9,6 @@ let articles = [];
 const parse = async (url) => {
   const feed = await parser.parseURL(url);
 
-  console.log(feed.title);
-
   feed.items.forEach((item) => {
     articles.push({ item });
   });
@@ -20,13 +18,14 @@ parse(feedURL);
 
 let app = express();
 app.use(cors());
+let port = process.env.PORT || 4000;
 
 app.get("/", (req, res) => {
   res.send(articles);
 });
 
-const server = app.listen("4000", () => {
-  console.log("App listens at http://localhost:4000");
+app.listen(port, () => {
+  console.log(`App listens at http://localhost:${port}`);
 });
 
-export default server;
+export default app;
