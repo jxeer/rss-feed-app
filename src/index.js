@@ -1,6 +1,6 @@
-import cors from "cors";
-import express from "express";
-import RSSParser from "rss-parser";
+const cors = require("cors");
+const express = require("express");
+const RSSParser = require("rss-parser");
 
 const feedURL = "https://netflixtechblog.com/feed";
 const parser = new RSSParser();
@@ -16,9 +16,9 @@ const parse = async (url) => {
 
 parse(feedURL);
 
-let app = express();
+const app = express();
 app.use(cors());
-let port = process.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 
 app.get("/", (req, res) => {
   res.send(articles);
@@ -28,4 +28,4 @@ app.listen(port, () => {
   console.log(`App listens at http://localhost:${port}`);
 });
 
-export default app;
+module.exports = app;
